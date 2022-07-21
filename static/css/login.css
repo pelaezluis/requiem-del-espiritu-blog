@@ -1,0 +1,20 @@
+body {
+    background: rgb(230, 230, 230) !important;
+    font-family:'Grenze Gotisch', cursive !important;
+    font-size: 30px !important;
+}
+
+.div-login {
+    background: #2E2212;
+}
+
+.btn-login {
+    background: #6E6702 !important;
+    color: whitesmoke !important;
+    font-size: 20px !important;
+    width: 100%;
+}
+
+.login-logo {
+    border-radius: 15px;
+}

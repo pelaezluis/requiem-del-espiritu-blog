@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div class="home">
+        <h1><em><strong style="color: white; font-family: 'Grenze Gotisch', cursive;">Requiem del espíritu</strong></em></h1>
+        <div class="encabezado">
+            <!-- <img id="img-holoceno" src="https://secure.gravatar.com/avatar/d45aaaccae9071f5ac6d59e6d5f6599a/?s=120&d=identicon" alt=""> -->
+            <h4 id="titulo-holoceno">HOLOCENO</h4>
+            <h5><em  style="font-family: 'Grenze Gotisch', cursive;">Una aproximación a toda la mierda filosófica que he leído en los últimos dos años</em></h5>
+        </div>
+        <hr style="background: white">
+        {% if blogs|length > 0 %}
+            <div class="blogs">
+                {% for blog in blogs%}
+                    <div class="card text-center m-4 card-box" style="width: 18rem; background: #2E2212;">
+                        <img src={{blog[4]}} class="card-img-top img-blog" alt="...">
+                        <div class="card-body" style="color: whitesmoke;">
+                            <h5 class="card-title">{{blog[1]}}</h5>
+                            <p class="card-text">{{blog[3]}}</p>
+                            <p>Por <em><strong>{{blog[2].capitalize()}}</strong></em></p>
+                            <p><em>Creado el {{blog[5]}}</em></p>
+                            <a href="blog/{{blog[6]}}" class="btn " style="background: #6E6702 !important; color: whitesmoke">Ir al blog</a>
+                            {% if 'username' in session %}
+                                <a href="blog/{{blog[6]}}/editar/{{blog[0]}}" class="btn " style="background: #6E6702 !important; color: whitesmoke">Editar</a>
+                                <a href="blog/{{blog[6]}}/eliminar/{{blog[0]}}" class="btn " style="background: #6E6702 !important; color: whitesmoke">Eliminar</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <h1 class="no-disponibles">No hay blogs disponibles</h1>
+        {% endif %}
+    </div>
+
+{% endblock %}

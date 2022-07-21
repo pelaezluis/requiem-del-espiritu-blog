@@ -1,0 +1,19 @@
+.blog {
+    margin: 2em;
+    text-align: center;
+    color: whitesmoke
+}
+
+.blog-title {
+    font-size: 50px;
+}
+
+#blog-autor {
+    text-align: right;
+    color: #958c04;
+}
+
+#entrada {
+    width: 100%;
+    word-wrap: break-word;
+}

@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <div>
+        <div class="blog">
+            <h1 style="color: whitesmoke">Nueva entrada</h1>
+        </div>
+        
+        <form action="/blog/nuevo-blog" method="post">
+            <div class="mb-3" style="color: whitesmoke">
+                <label for="exampleInputEmail1" class="form-label">Título</label>
+                <input type="text" class="form-control" name="title" placeholder="Escribe el título de la entrada" required>
+            </div>
+            <div class="mb-3" style="color: whitesmoke">
+                <label for="exampleInputEmail1" class="form-label">Descripción</label>
+                <input type="text" class="form-control" name="description" placeholder="Describe brevemente el contenido" required>
+            </div>
+            <div class="mb-3" style="color: whitesmoke">
+                <label for="exampleInputEmail1" class="form-label">Imagen</label>
+                <input type="text" class="form-control" name="img" placeholder="Pega la ruta de la imagen" required>
+            </div>
+            <div class="mb-3" style="color: whitesmoke">
+                <label for="exampleInputEmail1" class="form-label">Ruta (URL)</label>
+                <input type="text" class="form-control" name="url" placeholder="escribe-el-titulo-separado-por-guiones (Sin signos ni tildes)" required>
+            </div>
+            <textarea name="blog"></textarea>
+            <br>
+            <button type="submit" class="btn" style="background: #6E6702 !important; color: whitesmoke">Guardar</button>
+            <a class="btn" href="/" style="background: #6E6702 !important; color: whitesmoke">Volver</a>
+        </form>
+
+        <script>
+            CKEDITOR.replace('blog');
+        </script>
+    </div>
+{% endblock %}

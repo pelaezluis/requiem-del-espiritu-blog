@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="blog" onload="escribirBlog()">
+    <h1><em><strong style="color: white">Requiem del espíritu</strong></em></h1>
+    <br><br>
+    <hr>
+    <div class="container">
+        <h1 class="blog-title"><em>{{blog[0]}}</em></h1>
+        <div id="blog-autor">
+            <h6><em>Por <strong>{{blog[1].capitalize() }}</strong></em> </h6>
+            <hr>
+            <h6><em>Creado el {{blog[2]}}</em></h6>
+            <hr>
+        </div>
+    </div>
+    <img style="width: 50%; ; padding-top: 2em; padding-bottom: 3em" src="{{blog[5]}}" alt="">
+    <p hidden id="blog_p">{{blog[3]}}</p>
+    <div id="entrada" style="text-align: left">
+
+    </div>
+</div>
+{% endblock %}

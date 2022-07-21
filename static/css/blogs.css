@@ -1,0 +1,38 @@
+.home {
+    margin: 2em;
+    text-align: center;
+}
+
+.blogs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.img-blog {
+    width: 100%;
+    border-radius: 30px 0 0 0;
+}
+
+.encabezado {
+    color: whitesmoke
+}
+
+#titulo-holoceno {
+    margin: 1em;
+}
+
+#img-holoceno {
+    border-radius: 20px;
+}
+
+.card-box {
+    box-shadow: 3px 3px 20px 7px rgba(170, 130, 100, 0.3);
+    border-radius: 30px 0 30px 0;
+}
+
+.no-disponibles {
+    color: whitesmoke;
+    font-family: 'Grenze Gotisch', cursive;
+    font-size: 60px
+}

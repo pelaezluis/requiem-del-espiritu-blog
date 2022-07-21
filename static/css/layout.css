@@ -1,0 +1,35 @@
+html {
+    height: 100%;
+}
+
+body {
+    background: #37342f;
+    font-family: "Times New Roman", Times, serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+footer {
+    text-align: center;
+    background: #5d5c50;
+    height: 160px;
+    width: 100%;
+    font-family: 'Times New Roman', Times, serif;
+    margin-top: 2em;
+    bottom: 0;
+}
+
+.instagram {
+    padding: 1em;
+    width: 4em;
+}
+
+.instagram:hover {
+    width: 5em;
+}
+
+.copyright {
+    padding: 2em;
+    color: whitesmoke;
+}
