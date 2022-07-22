@@ -6,7 +6,7 @@
             <h1 style="color: whitesmoke">Nueva entrada</h1>
         </div>
         
-        <form action="/blog/nuevo-blog" method="post">
+        <form action="/blog/nuevo-blog" method="post" enctype="multipart/form-data">
             <div class="mb-3" style="color: whitesmoke">
                 <label for="exampleInputEmail1" class="form-label">Título</label>
                 <input type="text" class="form-control" name="title" placeholder="Escribe el título de la entrada" required>
@@ -22,6 +22,10 @@
             <div class="mb-3" style="color: whitesmoke">
                 <label for="exampleInputEmail1" class="form-label">Ruta (URL)</label>
                 <input type="text" class="form-control" name="url" placeholder="escribe-el-titulo-separado-por-guiones (Sin signos ni tildes)" required>
+            </div>
+            <div class="mb-3" style="color: whitesmoke">
+                <label for="exampleInputAudio" class="form-label">Audio</label>
+                <input type="file" accept="audio/*" name="song" required>
             </div>
             <textarea name="blog"></textarea>
             <br>

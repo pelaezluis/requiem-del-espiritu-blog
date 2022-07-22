@@ -1,9 +1,14 @@
-from flask import Flask, flash, render_template, redirect, session, url_for, request
+from flask import Flask, flash, render_template, redirect, session, request, url_for
 from db import DB
-
+import os
+from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 app.secret_key = "qwerty"
+
+#path = "/home/requiemdelespiritu/mysite/static/songs"
+path = "static/songs"
+app.config['songs'] = path
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -24,6 +29,7 @@ def login():
             session['username'] = data[2]
             return redirect('/')
         else:
+            flash('Usuario y/o contraseña erronea')
             return redirect('/login')
 
 
@@ -42,7 +48,6 @@ def home():
 def blog(ruta):
     db = DB()
     blog = db.find_blog(ruta)
-    # print(blog)
     return render_template("Blog.html", blog=blog, title=blog[0])
 
 
@@ -55,16 +60,23 @@ def new_blog():
         return redirect('/')
 
     if request.method == 'POST':
-        db = DB()
-        title = request.form['title']
-        autor = session['user_id']
-        description = request.form['description']
-        img = request.form['img']
-        url = request.form['url']
-        blog = request.form['blog']
-        data = (title, autor, description, img, url, blog)
-        db.add_new_blog(data)
-        return redirect('/')
+        try:
+            db = DB()
+            title = request.form['title']
+            print(title)
+            autor = session['user_id']
+            description = request.form['description']
+            img = request.form['img']
+            url = request.form['url']
+            blog = request.form['blog']
+            song = request.files['song']
+            song_name = secure_filename(song.filename)
+            song.save(os.path.join(path, song_name))
+            data = (title, autor, description, img, url, blog, song_name)
+            db.add_new_blog(data)
+            return redirect('/')
+        except Exception as e:
+            print(e)
         
     elif request.method == 'GET':
         return render_template('NewBlog.html')
@@ -78,14 +90,20 @@ def edit_blog(ruta, id):
         return render_template('EditBlog.html', blog=blog)
         
     elif request.method == 'POST':
-        title = request.form['title']
-        description = request.form['description']
-        img = request.form['img']
-        url = request.form['url']
-        blog = request.form['blog']
-        data = (title, description, img, url, blog, id)
-        db.edit_blog(data)
-        return redirect('/')
+        try:
+            title = request.form['title']
+            description = request.form['description']
+            img = request.form['img']
+            url = request.form['url']
+            blog = request.form['blog']
+            song = request.files['song']
+            song_name = secure_filename(song.filename)
+            song.save(os.path.join(path, song_name))
+            data = (title, description, img, url, blog, song_name, id)
+            db.edit_blog(data)
+            return redirect('/')
+        except Exception as e:
+            print(e)
     
 
 

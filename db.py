@@ -43,7 +43,7 @@ class DB:
         """
             Obtener blog por ruta
         """
-        sql = "select e.title, u.username, e.created_at, e.blog, e.description, e.img, e.url from entrada e left join user u on e.user_id=u.id having e.url =%s;"
+        sql = "select e.title, u.username, e.created_at, e.blog, e.description, e.img, e.url, e.song from entrada e left join user u on e.user_id=u.id having e.url =%s;"
         cur = self.db.cursor()
         cur.execute(sql, (ruta,))
         blog = cur.fetchone()
@@ -53,7 +53,7 @@ class DB:
         """
             Inserta una nueva entrada en la db
         """
-        sql = "insert into entrada(title, user_id, description, img, created_at, url, blog) values(%s, %s, %s, %s, NOW(), %s, %s)"
+        sql = "insert into entrada(title, user_id, description, img, created_at, url, blog, song) values(%s, %s, %s, %s, NOW(), %s, %s, %s)"
         cur = self.db.cursor()
         cur.execute(sql, data)
         self.db.commit()
@@ -67,6 +67,7 @@ class DB:
         cur = self.db.cursor()
         cur.execute(sql, (id,))
         row = cur.fetchone()
+        print(row)
         if len(row) > 0:
             return row
         else:
@@ -77,7 +78,7 @@ class DB:
         """
             Modifica una entrada
         """
-        sql = "UPDATE entrada set title=%s, description=%s, img=%s, url=%s, blog=%s WHERE id=%s"
+        sql = "UPDATE entrada set title=%s, description=%s, img=%s, url=%s, blog=%s, song=%s WHERE id=%s"
         cur = self.db.cursor()
         cur.execute(sql, data)
         self.db.commit()

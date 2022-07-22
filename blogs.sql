@@ -22,8 +22,14 @@ create table entrada(
     foreign key(user_id) references user (id)
 );
 
+alter table entrada drop column song;
+
+alter table entrada modify column song varchar(150) not null;
+
 select * from user;
-drop table entradas;
+drop table entrada;
 select * from entrada;
+
+update entrada set song="qwerty";
 
 select e.id, e.title, u.username,e.description, e.img, e.created_at, e.url from entrada e left join user u on u.id = e.user_id;
