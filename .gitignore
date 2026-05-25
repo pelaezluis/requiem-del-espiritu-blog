@@ -7,3 +7,5 @@ static/songs/*
 *.rar
 *.zip
 .DS_Store
+docker-compose.yml
+Dockerfile

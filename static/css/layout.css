@@ -3,7 +3,7 @@ html {
 }
 
 body {
-    background: #37342f;
+    background: #452635;
     font-family: "Times New Roman", Times, serif;
     display: flex;
     flex-direction: column;
@@ -12,7 +12,7 @@ body {
 
 footer {
     text-align: center;
-    background: #5d5c50;
+    background: #51111f;
     height: 160px;
     width: 100%;
     font-family: 'Times New Roman', Times, serif;

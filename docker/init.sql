@@ -1,0 +1,21 @@
+CREATE TABLE IF NOT EXISTS user (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(60) NOT NULL,
+    username VARCHAR(50) NOT NULL,
+    email VARCHAR(70) NOT NULL,
+    password VARCHAR(200) NOT NULL,
+    created_at DATE NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS entrada (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    title VARCHAR(100) NOT NULL,
+    description VARCHAR(100) NOT NULL,
+    img VARCHAR(300) NOT NULL,
+    created_at DATE NOT NULL,
+    url VARCHAR(150) NOT NULL,
+    blog TEXT(60000) NOT NULL,
+    song VARCHAR(150) NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES user (id)
+);

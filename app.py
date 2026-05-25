@@ -1,7 +1,10 @@
 import os
+from dotenv import load_dotenv
 from flask import Flask, flash, render_template, redirect, session, request, url_for
 from werkzeug.utils import secure_filename
 from db import DB
+
+load_dotenv()
 
 app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY", "qwerty")

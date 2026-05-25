@@ -11,7 +11,6 @@
 
 .img-blog {
     width: 100%;
-    border-radius: 30px 0 0 0;
 }
 
 .encabezado {
@@ -26,13 +25,34 @@
     border-radius: 20px;
 }
 
+.btn-read {
+    background: #51111F !important;
+}
+
 .card-box {
     box-shadow: 3px 3px 20px 7px rgba(170, 130, 100, 0.3);
-    border-radius: 30px 0 30px 0;
+    border-radius: 0px 0 30px 30px;
+    background: #270A16 !important;
 }
 
 .no-disponibles {
     color: whitesmoke;
     font-family: 'Grenze Gotisch', cursive;
     font-size: 60px
+}
+
+.nuevo {
+    display: flex;
+    justify-content: center;
+    color: whitesmoke;
+}
+
+.nuevo h3 {
+    width: 50%;
+    /*background: #EA5113;*/
+    background: #DB81FF;
+    margin: 0.5em;
+    border-radius: 10px;
+    font-family: 'Grenze Gotisch', cursive;
+    text-decoration: underline;
 }
