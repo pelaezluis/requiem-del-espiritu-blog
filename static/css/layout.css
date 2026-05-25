@@ -8,32 +8,130 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    color: #e0e0e0;
+    margin: 0;
 }
 
 .main-content {
     flex: 1;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
 }
 
+/* Navbar */
+.navbar {
+    background: rgba(39, 10, 22, 0.95) !important;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.15) !important;
+    padding: 0.8rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+}
+
+.navbar-brand {
+    font-size: 1.6rem;
+    color: #d4af37 !important;
+    font-family: "Times New Roman", Times, serif;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+    text-decoration: none;
+}
+
+.navbar-brand:hover {
+    color: #f0c674 !important;
+}
+
+.navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.8) !important;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 0.95rem;
+    padding: 0.5rem 1.2rem !important;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative;
+}
+
+.navbar-nav .nav-link::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: #d4af37;
+    transition: width 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #d4af37 !important;
+}
+
+.navbar-nav .nav-link:hover::after {
+    width: calc(100% - 2.4rem);
+}
+
+.navbar-toggler {
+    border: 1px solid rgba(212, 175, 55, 0.3) !important;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(212, 175, 55, 0.85)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
+/* Footer */
 footer {
     text-align: center;
-    background: #51111f;
-    height: 160px;
+    background: rgba(39, 10, 22, 0.95);
+    border-top: 1px solid rgba(212, 175, 55, 0.1);
+    padding: 2rem 0;
     width: 100%;
-    font-family: 'Times New Roman', Times, serif;
-    margin-top: 2em;
     flex-shrink: 0;
+}
+
+footer label {
+    color: #d4af37;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-family: "Times New Roman", Times, serif;
 }
 
 .instagram {
     padding: 1em;
-    width: 4em;
+    width: 3em;
+    opacity: 0.5;
+    transition: all 0.3s ease;
+    vertical-align: middle;
 }
 
 .instagram:hover {
-    width: 5em;
+    opacity: 1;
+    transform: translateY(-3px);
 }
 
 .copyright {
-    padding: 2em;
-    color: whitesmoke;
+    padding: 0.5em 0 0;
+    color: rgba(255, 255, 255, 0.35);
+    font-size: 0.8rem;
+    margin: 0;
+}
+
+/* User greeting */
+.user-greeting {
+    color: #d4af37;
+    font-size: 0.9rem;
+    padding: 0.6rem 1.5rem;
+    margin: 0;
+    background: rgba(212, 175, 55, 0.05);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.08);
+    font-family: "Times New Roman", Times, serif;
+}
+
+/* Flash messages */
+.flash-container {
+    max-width: 600px;
+    margin: 1rem auto;
 }

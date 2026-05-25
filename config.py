@@ -12,4 +12,6 @@ class Connection:
             password=os.environ.get("DB_PASSWORD", ""),
             database=os.environ.get("DB_NAME", "blog"),
             port=int(os.environ.get("DB_PORT", 3306)),
+            charset="utf8mb4",
+            use_unicode=True,
         )

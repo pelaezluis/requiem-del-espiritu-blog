@@ -1,27 +1,26 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<div class="blog" onload="escribirBlog()">
+<article class="blog-article">
+    {% if blog[7] %}
+    <audio src="{{ url_for('static', filename='songs/' + blog[7]) }}" autoplay hidden></audio>
+    {% endif %}
 
-    <audio src="{{ url_for('static', filename="songs/"+blog[7]) }}" autoplay></audio>
-
-    <h1><em><strong style="color: white">Requiem del espíritu</strong></em></h1>
-    <br><br>
-    <hr>
-    <div class="container">
-        <h1 class="blog-title"><em>{{blog[0]}}</em></h1>
-        <div id="blog-autor">
-            <h6><em>Por <strong>{{blog[1].capitalize() }}</strong></em> </h6>
-            <hr>
-            <!--<h6><em>Creado el {{blog[2]}}</em></h6>-->
-            <hr>
+    <div class="article-header">
+        <h1>{{ blog[0] }}</h1>
+        <div class="article-meta">
+            <span class="author">Por <strong>{{ blog[1] }}</strong></span>
+            <span class="divider"></span>
+            <span>{{ blog[2] }}</span>
         </div>
     </div>
-    <img style="width: 50%; ; padding-top: 2em; padding-bottom: 3em" src="{{blog[5]}}" alt="">
-    <p hidden id="blog_p">{{blog[3]}}</p>
-    <div id="entrada" style="text-align: left">
 
-    </div>
+    <hr class="article-divider">
 
-</div>
+    {% if blog[5] %}
+    <img src="{{ blog[5] }}" alt="" class="article-image">
+    {% endif %}
+
+    <div id="entrada">{{ blog[3] | safe }}</div>
+</article>
 {% endblock %}

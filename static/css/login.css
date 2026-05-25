@@ -1,20 +1,73 @@
 body {
-    background: rgb(230, 230, 230) !important;
-    font-family:'Grenze Gotisch', cursive !important;
-    font-size: 30px !important;
-}
-
-.div-login {
-    background: #2E2212;
-}
-
-.btn-login {
-    background: #6E6702 !important;
-    color: whitesmoke !important;
-    font-size: 20px !important;
-    width: 100%;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%) !important;
+    font-family: "Inter", "Segoe UI", system-ui, sans-serif !important;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .login-logo {
-    border-radius: 15px;
+    width: 100px;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+}
+
+.login-card {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 20px !important;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+.login-card .card-body {
+    padding: 3rem !important;
+}
+
+.login-title {
+    font-family: "Playfair Display", "Times New Roman", serif !important;
+    font-size: 2rem !important;
+    color: #fff;
+    margin-bottom: 2rem !important;
+}
+
+.login-card .form-control {
+    background: rgba(255, 255, 255, 0.06) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: #fff !important;
+    border-radius: 12px !important;
+    padding: 0.9rem 1.2rem !important;
+    font-size: 0.95rem !important;
+    transition: all 0.3s ease;
+}
+
+.login-card .form-control:focus {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-color: #f0c040 !important;
+    box-shadow: 0 0 0 3px rgba(240, 192, 64, 0.15) !important;
+    outline: none;
+}
+
+.login-card .form-control::placeholder {
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.btn-login {
+    background: linear-gradient(135deg, #f0c040, #e6a800) !important;
+    color: #1a1a2e !important;
+    font-weight: 700 !important;
+    font-size: 1rem !important;
+    padding: 0.8rem !important;
+    border-radius: 12px !important;
+    border: none !important;
+    width: 100%;
+    transition: all 0.3s ease !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-login:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(240, 192, 64, 0.3);
 }

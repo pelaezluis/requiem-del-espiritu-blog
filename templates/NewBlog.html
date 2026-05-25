@@ -1,44 +1,48 @@
 {% extends "layout.html" %}
 
 {% block content %}
-    <div>
-        <div class="blog">
-            <h1 style="color: whitesmoke">Nueva entrada</h1>
-        </div>
-        
-        <form action="/blog/nuevo-blog" method="post" enctype="multipart/form-data">
-            <div class="mb-3" style="color: whitesmoke">
-                <label for="exampleInputEmail1" class="form-label">Título</label>
-                <input type="text" class="form-control" name="title" placeholder="Escribe el título de la entrada" required>
-            </div>
-            <div class="mb-3" style="color: whitesmoke">
-                <label for="exampleInputEmail1" class="form-label">Descripción</label>
-                <input type="text" class="form-control" name="description" placeholder="Describe brevemente el contenido" required>
-            </div>
-            <div class="mb-3" style="color: whitesmoke">
-                <label for="exampleInputEmail1" class="form-label">Imagen</label>
-                <input type="text" class="form-control" name="img" placeholder="Pega la ruta de la imagen" >
-            </div>
-            <div class="mb-3" style="color: whitesmoke">
-                <label for="exampleInputEmail1" class="form-label">Enlace youtube</label>
-                <input type="text" class="form-control" name="url_youtube" placeholder="Pega la url de youtube">
-            </div>
-            <div class="mb-3" style="color: whitesmoke">
-                <label for="exampleInputEmail1" class="form-label">Ruta (URL)</label>
-                <input type="text" class="form-control" name="url" placeholder="escribe-el-titulo-separado-por-guiones (Sin signos ni tildes)" required>
-            </div>
-            <div class="mb-3" style="color: whitesmoke">
-                <label for="exampleInputAudio" class="form-label">Audio</label>
-                <input type="file" accept="audio/*" name="song" required>
-            </div>
-            <textarea name="blog"></textarea>
-            <br>
-            <button type="submit" class="btn" style="background: #6E6702 !important; color: whitesmoke">Guardar</button>
-            <a class="btn" href="/" style="background: #6E6702 !important; color: whitesmoke">Volver</a>
-        </form>
+<div class="row justify-content-center">
+    <div class="col-12 col-lg-8">
+        <h2 class="form-page-title">Nueva entrada</h2>
 
-        <script>
-            CKEDITOR.replace('blog');
-        </script>
+        <form action="/blog/nuevo-blog" method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label class="form-label">Título</label>
+                <input type="text" class="form-control form-input" name="title"
+                       placeholder="Título de la entrada" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Descripción</label>
+                <input type="text" class="form-control form-input" name="description"
+                       placeholder="Breve descripción" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Imagen</label>
+                <input type="text" class="form-control form-input" name="img"
+                       placeholder="URL de la imagen">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Ruta (URL)</label>
+                <input type="text" class="form-control form-input" name="url"
+                       placeholder="titulo-separado-por-guiones" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Audio</label>
+                <input type="file" accept="audio/*" name="song" class="form-file" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Contenido</label>
+                <textarea name="blog"></textarea>
+            </div>
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-gold">Guardar</button>
+                <a href="/" class="btn btn-outline">Volver</a>
+            </div>
+        </form>
     </div>
+</div>
+
+<script>
+    CKEDITOR.replace('blog');
+</script>
 {% endblock %}

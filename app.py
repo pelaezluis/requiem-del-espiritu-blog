@@ -133,7 +133,7 @@ def edit_blog(ruta, id):
         return redirect("/")
 
 
-@app.route("/blog/<string:ruta>/eliminar/<id>", methods=["POST"])
+@app.route("/blog/<string:ruta>/eliminar/<id>", methods=["GET", "POST"])
 def delete_blog(ruta, id):
     if "username" not in session:
         return redirect("/")
