@@ -1,86 +1,5 @@
-/* Article page */
-.blog-article {
-    max-width: 750px;
-    margin: 0 auto;
-    padding: 2rem 0;
-    color: rgba(255, 255, 255, 0.9);
-}
-
-.blog-article .article-header {
-    text-align: center;
-    margin-bottom: 2rem;
-}
-
-.blog-article .article-header h1 {
-    font-family: "Times New Roman", Times, serif;
-    font-size: 2.6rem;
-    font-weight: 400;
-    color: #fff;
-    line-height: 1.25;
-    margin-bottom: 0.75rem;
-}
-
-.blog-article .article-meta {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-    color: rgba(255, 255, 255, 0.45);
-    font-size: 0.9rem;
-    font-family: "Times New Roman", Times, serif;
-}
-
-.blog-article .article-meta .author {
-    color: #d4af37;
-}
-
-.blog-article .article-meta .author strong {
-    font-weight: 700;
-}
-
-.blog-article .article-meta .divider {
-    width: 4px;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.25);
-    border-radius: 50%;
-}
-
-.blog-article .article-image {
-    width: 100%;
-    max-height: 420px;
-    object-fit: cover;
-    border-radius: 4px;
-    margin: 1rem 0 2rem;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
-}
-
-.blog-article .article-divider {
-    border: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.15), transparent);
-    margin: 0 auto 1.5rem;
-    max-width: 250px;
-}
-
-#entrada {
-    width: 100%;
-    line-height: 1.8;
-    font-size: 1.05rem;
-    font-family: "Times New Roman", Times, serif;
-}
-
-#entrada p {
-    margin-bottom: 1.25rem;
-}
-
-#entrada img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 4px;
-    margin: 1.5rem 0;
-}
-
+#entrada p { margin-bottom: 1.25rem; }
+#entrada img { max-width: 100%; height: auto; margin: 1.5rem 0; }
 #entrada blockquote {
     border-left: 3px solid #d4af37;
     padding: 0.5rem 1.5rem;
@@ -88,23 +7,5 @@
     color: rgba(255, 255, 255, 0.65);
     font-style: italic;
     background: rgba(212, 175, 55, 0.04);
-    border-radius: 0 4px 4px 0;
 }
-
-#entrada h2, #entrada h3 {
-    font-family: "Times New Roman", Times, serif;
-    color: #fff;
-    font-weight: 400;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-}
-
-@media (max-width: 768px) {
-    .blog-article .article-header h1 {
-        font-size: 1.8rem;
-    }
-
-    .blog-article {
-        padding: 1rem 0;
-    }
-}
+#entrada h2, #entrada h3 { color: #fff; font-weight: 400; margin-top: 2rem; margin-bottom: 1rem; }

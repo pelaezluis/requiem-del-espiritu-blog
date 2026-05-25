@@ -1,43 +1,47 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-<div class="home">
-    <div class="home-header">
-        <h1>Cry love Cry</h1>
-        <p class="subtitle">Un blog de Luis Peláez</p>
+<div class="text-center max-w-7xl mx-auto">
+    <div class="pt-6 pb-4">
+        <h1 class="text-4xl sm:text-5xl text-white font-serif font-normal tracking-wide mb-1">Cry love Cry</h1>
+        <p class="text-base text-white/40 italic font-serif mb-3">Un blog de Luis Peláez</p>
         <a href="https://music.apple.com/co/playlist/cry-love-cry/pl.u-e98lGppSaXoyL1d"
-           class="playlist-link" target="_blank">
-            Escucha la lista de reproducción del blog
+           class="inline-block text-[#1a1a1a] font-serif no-underline text-sm font-bold rounded-full px-7 py-2.5 shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl"
+           style="background: linear-gradient(135deg, #d4af37, #b8941f, #d4af37); background-size: 200% 200%; animation: shimmer 3s ease-in-out infinite;"
+           target="_blank">
+            &#9835; Escucha la lista de reproducción del blog
         </a>
     </div>
-    <hr class="home-divider">
+    <hr class="border-0 h-px max-w-[250px] mx-auto my-5" style="background: linear-gradient(90deg, transparent, rgba(212,175,55,0.12), transparent);">
 
     {% if blogs|length > 0 %}
-        <div class="blogs">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pb-8">
             {% for blog in blogs %}
-                <div class="blog-card">
+                <div class="blog-card group relative w-full h-[500px] rounded overflow-hidden shadow-xl cursor-pointer transition-all duration-400 hover:-translate-y-1.5 hover:shadow-2xl" style="background: #1a1a1a;">
                     {% if blog[0] <= 3 %}
-                        <div class="new-badge">Nuevo</div>
+                        <div class="new-badge absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 group-hover:top-10 group-hover:-translate-y-0 z-10 bg-gradient-to-br from-gold to-gold-dark text-[#1a1a1a] px-6 py-2.5 rounded text-sm font-bold uppercase tracking-wider shadow-lg pointer-events-none font-serif transition-all duration-300">
+                            Nuevo
+                        </div>
                     {% endif %}
 
                     {% if blog[7] %}
-                        <iframe class="card-image" src="{{ blog[7] }}?autoplay=1&mute=1&loop=1"
+                        <iframe class="card-image w-full h-full object-cover border-0" src="{{ blog[7] }}?autoplay=1&mute=1&loop=1"
                                 title="YouTube video player" allow="autoplay; encrypted-media">
                         </iframe>
                     {% else %}
-                        <img src="{{ blog[4] }}" class="card-image" alt="">
+                        <img src="{{ blog[4] }}" class="card-image w-full h-full object-cover" alt="">
                     {% endif %}
 
-                    <div class="card-overlay">
-                        <div class="card-info">
-                            <h3 class="card-title">{{ blog[1] }}</h3>
-                            <p class="card-author">Por <strong>{{ blog[2] }}</strong></p>
-                            <p class="card-description">{{ blog[3] }}</p>
-                            <a href="blog/{{ blog[6] }}" class="btn-read">Leer entrada</a>
+                    <div class="card-overlay absolute inset-0 z-[3] p-8 flex items-center justify-center opacity-0 invisible group-hover:opacity-100 group-hover:visible">
+                        <div class="card-info w-full rounded text-center p-6 shadow-2xl" style="background: rgba(39,10,22,0.92); backdrop-filter: blur(10px);">
+                            <h3 class="text-xl font-bold text-[#f5f0e0] font-serif mb-1.5 leading-tight">{{ blog[1] }}</h3>
+                            <p class="text-sm text-gold italic font-serif mb-2.5">Por <strong>{{ blog[2] }}</strong></p>
+                            <p class="text-sm text-white/60 font-serif leading-relaxed mb-4 line-clamp-3">{{ blog[3] }}</p>
+                            <a href="blog/{{ blog[6] }}" class="inline-block no-underline bg-gradient-to-br from-gold to-gold-dark text-[#1a1a1a] font-bold px-8 py-2 rounded text-sm font-serif transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:from-gold-light hover:to-gold">Leer entrada</a>
                             {% if 'username' in session %}
-                                <div class="card-admin-actions">
-                                    <a href="blog/{{ blog[6] }}/editar/{{ blog[0] }}" class="btn-admin btn-admin-edit">Editar</a>
-                                    <a href="blog/{{ blog[6] }}/eliminar/{{ blog[0] }}" class="btn-admin btn-admin-delete">Eliminar</a>
+                                <div class="mt-3 flex gap-2 justify-center">
+                                    <a href="blog/{{ blog[6] }}/editar/{{ blog[0] }}" class="text-xs text-white/50 border border-white/20 rounded px-3 py-1 font-serif no-underline transition hover:text-white hover:bg-white/10">Editar</a>
+                                    <a href="blog/{{ blog[6] }}/eliminar/{{ blog[0] }}" class="text-xs text-white/50 border border-white/20 rounded px-3 py-1 font-serif no-underline transition hover:text-red-400 hover:border-red-400/40">Eliminar</a>
                                 </div>
                             {% endif %}
                         </div>
@@ -46,7 +50,7 @@
             {% endfor %}
         </div>
     {% else %}
-        <p class="no-disponibles">No hay blogs disponibles</p>
+        <p class="text-white/25 text-2xl font-serif text-center py-16">No hay blogs disponibles</p>
     {% endif %}
 </div>
 {% endblock %}

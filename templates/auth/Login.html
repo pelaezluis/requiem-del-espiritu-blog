@@ -1,56 +1,62 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" sizes="96x96" href="{{ url_for('static', filename='img/favicon.ico') }}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
     <title>Requiem del espíritu | Login</title>
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ url_for('static', filename='img/favicon.ico') }}">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'dark-burgundy': 'rgba(39,10,22,0.9)',
+                        gold: '#d4af37',
+                        'gold-dark': '#b8941f',
+                    },
+                    fontFamily: {
+                        serif: ['"Times New Roman"', 'Times', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background: #452635; font-family: "Times New Roman", Times, serif; }
+    </style>
 </head>
+<body class="min-h-screen flex items-center justify-center m-0">
+    <div class="w-full max-w-sm mx-4">
+        <div class="rounded-lg shadow-2xl p-8 text-center" style="background: rgba(39,10,22,0.9); border: 1px solid rgba(212,175,55,0.12);">
+            <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo" class="w-[90px] rounded-full mx-auto mb-6">
 
-<body>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-11 col-sm-8 col-md-6 col-lg-4">
-                <div class="card login-card">
-                    <div class="card-body text-center">
-                        <img class="login-logo" src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="bg-red-900/20 border border-red-800/30 text-red-300 rounded px-4 py-2.5 text-sm mb-4 flex justify-between items-center">
+                            <span>{{ message }}</span>
+                            <button onclick="this.parentElement.remove()" class="text-red-400 hover:text-red-200 ml-3">&times;</button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
 
-                        {% with messages = get_flashed_messages() %}
-                            {% if messages %}
-                                {% for message in messages %}
-                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                        {{ message }}
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                    </div>
-                                {% endfor %}
-                            {% endif %}
-                        {% endwith %}
-
-                        <h3 class="login-title">Iniciar sesión</h3>
-                        <form action="/login" method="post">
-                            <div class="mb-3">
-                                <input type="text" name="username" class="form-control"
-                                       placeholder="Usuario" required>
-                            </div>
-                            <div class="mb-3">
-                                <input type="password" name="password" class="form-control"
-                                       placeholder="Contraseña" required>
-                            </div>
-                            <button class="btn btn-login" type="submit">Entrar</button>
-                        </form>
-                    </div>
+            <h3 class="text-white text-2xl font-serif font-normal mb-5 tracking-wide">Iniciar sesión</h3>
+            <form action="/login" method="post">
+                <div class="mb-4">
+                    <input type="text" name="username" required
+                           class="w-full bg-white/[0.05] border border-white/10 text-white rounded px-4 py-3 font-serif text-sm transition focus:bg-white/10 focus:border-gold/40 focus:ring-2 focus:ring-gold/10 outline-none"
+                           placeholder="Usuario">
                 </div>
-            </div>
+                <div class="mb-4">
+                    <input type="password" name="password" required
+                           class="w-full bg-white/[0.05] border border-white/10 text-white rounded px-4 py-3 font-serif text-sm transition focus:bg-white/10 focus:border-gold/40 focus:ring-2 focus:ring-gold/10 outline-none"
+                           placeholder="Contraseña">
+                </div>
+                <button type="submit" class="w-full bg-gradient-to-br from-gold to-gold-dark text-[#1a1a1a] font-bold py-3 rounded text-sm font-serif transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg border-0 cursor-pointer tracking-wide">Entrar</button>
+            </form>
         </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
 </body>
-
 </html>

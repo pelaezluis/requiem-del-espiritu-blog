@@ -29,7 +29,7 @@ def login():
         if data is not None:
             session["user_id"] = data[0]
             session["username"] = data[2]
-            return redirect("/")
+            return redirect("/poemas")
         else:
             flash("Usuario y/o contraseña erronea")
             return redirect("/login")
@@ -40,13 +40,18 @@ def login():
 
 
 @app.route("/", methods=["GET"])
+def landing():
+    return render_template("Landing.html", title="Requiem del espíritu | Inicio")
+
+
+@app.route("/poemas", methods=["GET"])
 def home():
     try:
         db = DB()
         blogs = db.get_blogs()
         db.close()
         return render_template(
-            "Home.html", title="Requiem del espíritu | Inicio", blogs=blogs
+            "Home.html", title="Requiem del espíritu | Poemas", blogs=blogs
         )
     except Exception as e:
         print(e)
@@ -62,14 +67,14 @@ def blog(ruta):
         db.close()
         if blog_data is None:
             flash("Blog no encontrado")
-            return redirect("/")
+            return redirect("/poemas")
         return render_template(
             "Blog.html", blog=blog_data, title=blog_data[0]
         )
     except Exception as e:
         print(e)
         flash("Error al cargar el blog")
-        return redirect("/")
+        return redirect("/poemas")
 
 
 @app.route("/blog/nuevo-blog", methods=["GET", "POST"])
@@ -92,7 +97,7 @@ def new_blog():
             data = (title, autor, description, img, url, blog_content, song_name)
             db.add_new_blog(data)
             db.close()
-            return redirect("/")
+            return redirect("/poemas")
         except Exception as e:
             print(e)
             flash("Error al crear el blog")
@@ -109,7 +114,7 @@ def edit_blog(ruta, id):
             db.close()
             if blog_data is None:
                 flash("Blog no encontrado")
-                return redirect("/")
+                return redirect("/poemas")
             return render_template("EditBlog.html", blog=blog_data)
 
         title = request.form["title"]
@@ -126,11 +131,11 @@ def edit_blog(ruta, id):
         data = (title, description, img, url, blog_content, song_name, id)
         db.edit_blog(data)
         db.close()
-        return redirect("/")
+        return redirect("/poemas")
     except Exception as e:
         print(e)
         flash("Error al editar el blog")
-        return redirect("/")
+        return redirect("/poemas")
 
 
 @app.route("/blog/<string:ruta>/eliminar/<id>", methods=["GET", "POST"])
@@ -144,7 +149,7 @@ def delete_blog(ruta, id):
     except Exception as e:
         print(e)
         flash("Error al eliminar el blog")
-    return redirect("/")
+    return redirect("/poemas")
 
 
 if __name__ == "__main__":

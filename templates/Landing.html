@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="text-center">
+    <div class="pt-10 pb-2">
+        <h1 class="text-4xl sm:text-5xl text-white font-serif font-normal tracking-wide mb-2">Requiem del espíritu</h1>
+        <p class="text-base text-white/40 italic font-serif mb-6">Un blog de Luis Peláez</p>
+    </div>
+    <hr class="border-0 h-px max-w-[250px] mx-auto mb-10" style="background: linear-gradient(90deg, transparent, rgba(212,175,55,0.12), transparent);">
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pb-12 max-w-6xl mx-auto">
+        <a href="/poemas" class="group relative block h-[420px] md:h-[520px] rounded overflow-hidden shadow-xl no-underline transition-all duration-400 hover:-translate-y-2 hover:shadow-2xl" style="background: #1a1a1a;">
+            <img src="https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?w=800&q=80" alt="Poemas" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-105 group-hover:blur-[2px]">
+            <div class="absolute inset-0 transition-all duration-500" style="background: linear-gradient(to top, rgba(39,10,22,0.95) 0%, rgba(39,10,22,0.3) 50%, rgba(0,0,0,0.1) 100%);"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-8 text-center transition-all duration-500 group-hover:pb-10">
+                <h2 class="text-3xl text-white font-serif font-bold mb-2">Poemas</h2>
+                <p class="text-gold text-sm font-serif opacity-0 group-hover:opacity-100 transition-opacity duration-500">Versos que nacen del silencio</p>
+            </div>
+        </a>
+
+        <a href="#" class="group relative block h-[420px] md:h-[520px] rounded overflow-hidden shadow-xl no-underline transition-all duration-400 hover:-translate-y-2 hover:shadow-2xl" style="background: #1a1a1a;">
+            <img src="https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?w=800&q=80" alt="Aproximaciones filosóficas" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-105 group-hover:blur-[2px]">
+            <div class="absolute inset-0 transition-all duration-500" style="background: linear-gradient(to top, rgba(39,10,22,0.95) 0%, rgba(39,10,22,0.3) 50%, rgba(0,0,0,0.1) 100%);"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-8 text-center transition-all duration-500 group-hover:pb-10">
+                <h2 class="text-3xl text-white font-serif font-bold mb-2">Aproximaciones filosóficas</h2>
+                <p class="text-gold text-sm font-serif opacity-0 group-hover:opacity-100 transition-opacity duration-500">Próximamente</p>
+            </div>
+        </a>
+
+        <a href="#" class="group relative block h-[420px] md:h-[520px] rounded overflow-hidden shadow-xl no-underline transition-all duration-400 hover:-translate-y-2 hover:shadow-2xl" style="background: #1a1a1a;">
+            <img src="https://images.unsplash.com/photo-1519791883288-dc8bd696e667?w=800&q=80" alt="Relatos reales" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-105 group-hover:blur-[2px]">
+            <div class="absolute inset-0 transition-all duration-500" style="background: linear-gradient(to top, rgba(39,10,22,0.95) 0%, rgba(39,10,22,0.3) 50%, rgba(0,0,0,0.1) 100%);"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-8 text-center transition-all duration-500 group-hover:pb-10">
+                <h2 class="text-3xl text-white font-serif font-bold mb-2">Relatos reales</h2>
+                <p class="text-gold text-sm font-serif opacity-0 group-hover:opacity-100 transition-opacity duration-500">Próximamente</p>
+            </div>
+        </a>
+    </div>
+</div>
+{% endblock %}

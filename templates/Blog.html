@@ -1,26 +1,26 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<article class="blog-article">
+<article class="max-w-3xl mx-auto py-6 text-white/90">
     {% if blog[7] %}
     <audio src="{{ url_for('static', filename='songs/' + blog[7]) }}" autoplay hidden></audio>
     {% endif %}
 
-    <div class="article-header">
-        <h1>{{ blog[0] }}</h1>
-        <div class="article-meta">
-            <span class="author">Por <strong>{{ blog[1] }}</strong></span>
-            <span class="divider"></span>
+    <div class="text-center mb-8">
+        <h1 class="text-3xl sm:text-4xl text-white font-serif font-normal leading-tight mb-3">{{ blog[0] }}</h1>
+        <div class="flex items-center justify-center gap-3 flex-wrap text-sm text-white/40 font-serif">
+            <span class="text-gold">Por <strong>{{ blog[1] }}</strong></span>
+            <span class="w-1 h-1 rounded-full bg-white/30"></span>
             <span>{{ blog[2] }}</span>
         </div>
     </div>
 
-    <hr class="article-divider">
+    <hr class="border-0 h-px max-w-[250px] mx-auto mb-6" style="background: linear-gradient(90deg, transparent, rgba(212,175,55,0.12), transparent);">
 
     {% if blog[5] %}
-    <img src="{{ blog[5] }}" alt="" class="article-image">
+    <img src="{{ blog[5] }}" alt="" class="w-full max-h-[420px] object-cover rounded mb-6 shadow-2xl">
     {% endif %}
 
-    <div id="entrada">{{ blog[3] | safe }}</div>
+    <div id="entrada" class="text-base leading-relaxed font-serif">{{ blog[3] | safe }}</div>
 </article>
 {% endblock %}

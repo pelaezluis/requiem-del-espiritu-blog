@@ -1,95 +1,117 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
     <link rel="icon" type="image/png" sizes="96x96" href="{{ url_for('static', filename='img/favicon.ico') }}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        burgundy: '#452635',
+                        'dark-burgundy': 'rgba(39,10,22,0.95)',
+                        gold: '#d4af37',
+                        'gold-dark': '#b8941f',
+                        'gold-light': '#f0c674',
+                    },
+                    fontFamily: {
+                        serif: ['"Times New Roman"', 'Times', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/layout.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/blogs.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/blog.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/forms.css') }}">
-    <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
-    <title>{{title}}</title>
 </head>
-
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark">
-            <div class="container">
-                <a class="navbar-brand" href="/">
-                    <img src="{{ url_for('static', filename='img/logo_2.png') }}" alt="Requiem del espíritu" class="navbar-logo">
-                    <span class="navbar-title">Requiem del espíritu</span>
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarNav" aria-controls="navbarNav"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/">Inicio</a>
-                        </li>
+        <nav class="sticky top-0 z-50" style="background: rgba(39,10,22,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(212,175,55,0.12);">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-14">
+                    <a href="/" class="flex items-center gap-3 no-underline">
+                        <img src="{{ url_for('static', filename='img/logo_2.png') }}" alt="Logo" class="w-9 h-9 rounded-full object-cover transition-transform duration-300 hover:scale-105">
+                        <span class="text-gold text-lg tracking-wide font-serif">Requiem del espíritu</span>
+                    </a>
+                    <button id="menu-btn" class="lg:hidden border border-gold/30 rounded px-2 py-1 text-gold/80 hover:text-gold">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                    <div id="nav-menu" class="hidden lg:flex lg:items-center lg:gap-1">
+                        <a href="/poemas" class="block lg:inline-block px-4 py-2 text-sm text-white/70 hover:text-gold uppercase tracking-wide font-serif transition no-underline relative after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-0.5 after:bg-gold after:transition-all after:duration-300 hover:after:w-[calc(100%-2.2rem)]">Poemas</a>
                         {% if 'username' in session %}
-                            <li class="nav-item">
-                                <a class="nav-link" href="/blog/nuevo-blog">Nueva entrada</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/login">Cerrar sesión</a>
-                            </li>
+                            <a href="/blog/nuevo-blog" class="block lg:inline-block px-4 py-2 text-sm text-white/70 hover:text-gold uppercase tracking-wide font-serif transition no-underline relative after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-0.5 after:bg-gold after:transition-all after:duration-300 hover:after:w-[calc(100%-2.2rem)]">Nueva entrada</a>
+                            <a href="/login" class="block lg:inline-block px-4 py-2 text-sm text-white/70 hover:text-gold uppercase tracking-wide font-serif transition no-underline relative after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-0.5 after:bg-gold after:transition-all after:duration-300 hover:after:w-[calc(100%-2.2rem)]">Cerrar sesión</a>
                         {% else %}
-                            <li class="nav-item">
-                                <a class="nav-link" href="/login">Iniciar sesión</a>
-                            </li>
+                            <a href="/login" class="block lg:inline-block px-4 py-2 text-sm text-white/70 hover:text-gold uppercase tracking-wide font-serif transition no-underline relative after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-0.5 after:bg-gold after:transition-all after:duration-300 hover:after:w-[calc(100%-2.2rem)]">Iniciar sesión</a>
                         {% endif %}
-                    </ul>
+                    </div>
                 </div>
             </div>
         </nav>
+        <div id="nav-overlay" class="nav-overlay"></div>
     </header>
 
     {% if 'username' in session %}
-        <div class="user-greeting">
-            <div class="container d-flex align-items-center justify-content-between">
-                <span><strong>{{ session['username'] }}</strong>, has iniciado sesión</span>
-                <a href="/blog/nuevo-blog" class="greeting-btn">+ Nueva entrada</a>
-            </div>
+    <div style="background: rgba(212,175,55,0.04); border-bottom: 1px solid rgba(212,175,55,0.06);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex items-center justify-between flex-wrap gap-2">
+            <span class="text-sm text-white/60 font-serif">Has iniciado sesión como <strong class="text-gold font-bold"> {{ session['username'] }}</strong></span>
+            <a href="/blog/nuevo-blog" class="text-xs text-gold border border-gold/20 rounded px-3 py-1.5 font-serif no-underline transition hover:bg-gold/10 hover:border-gold/40">+ Nueva entrada</a>
         </div>
+    </div>
     {% endif %}
 
     {% with messages = get_flashed_messages() %}
         {% if messages %}
-            <div class="container flash-container">
+            <div class="max-w-md mx-auto mt-5 px-4">
                 {% for message in messages %}
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        {{ message }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <div class="bg-red-900/20 border border-red-800/30 text-red-300 rounded px-4 py-3 text-sm font-serif flex justify-between items-center" role="alert">
+                        <span>{{ message }}</span>
+                        <button onclick="this.parentElement.remove()" class="text-red-400 hover:text-red-200 ml-3">&times;</button>
                     </div>
                 {% endfor %}
             </div>
         {% endif %}
     {% endwith %}
 
-    <div class="container main-content">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 main-content">
         {% block content %}{% endblock %}
     </div>
 
-    <footer>
-        <label>Requiem del espíritu</label>
-        <br>
-        <a href="https://www.instagram.com/reymileac/" target="_blank">
-            <img class="instagram" src="{{ url_for('static', filename='img/instagram.png') }}" alt="Instagram">
+    <footer class="text-center py-8" style="background: rgba(39,10,22,0.95); border-top: 1px solid rgba(212,175,55,0.08);">
+        <div class="text-gold/70 text-xs uppercase tracking-widest font-serif">Requiem del espíritu</div>
+        <a href="https://www.instagram.com/reymileac/" target="_blank" class="inline-block my-3 opacity-40 hover:opacity-80 hover:-translate-y-0.5 transition">
+            <img src="{{ url_for('static', filename='img/instagram.png') }}" alt="Instagram" class="w-9">
         </a>
-        <p class="copyright">Desarrollado por Luis Peláez &copy; 2026</p>
+        <p class="text-white/25 text-xs font-serif m-0">Desarrollado por Luis Peláez &copy; 2026</p>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
-
+    <script>
+        const btn = document.getElementById('menu-btn');
+        const menu = document.getElementById('nav-menu');
+        const overlay = document.getElementById('nav-overlay');
+        if (btn && menu && overlay) {
+            function toggle() {
+                menu.classList.toggle('hidden');
+                menu.classList.toggle('flex');
+                menu.classList.toggle('flex-col');
+                menu.classList.toggle('absolute');
+                menu.classList.toggle('top-14');
+                menu.classList.toggle('left-0');
+                menu.classList.toggle('right-0');
+                menu.classList.toggle('p-4');
+                menu.classList.toggle('z-50');
+                menu.style.background = 'rgba(39,10,22,0.98)';
+                overlay.classList.toggle('open');
+            }
+            btn.addEventListener('click', toggle);
+            overlay.addEventListener('click', toggle);
+        }
+    </script>
 </body>
-
 </html>
