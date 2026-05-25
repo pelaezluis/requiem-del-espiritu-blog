@@ -10,6 +10,10 @@ body {
     min-height: 100vh;
 }
 
+.main-content {
+    flex: 1;
+}
+
 footer {
     text-align: center;
     background: #51111f;
@@ -17,7 +21,7 @@ footer {
     width: 100%;
     font-family: 'Times New Roman', Times, serif;
     margin-top: 2em;
-    bottom: 0;
+    flex-shrink: 0;
 }
 
 .instagram {
