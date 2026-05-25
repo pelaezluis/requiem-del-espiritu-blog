@@ -1,73 +1,76 @@
 body {
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%) !important;
-    font-family: "Inter", "Segoe UI", system-ui, sans-serif !important;
+    background: #452635 !important;
+    font-family: "Times New Roman", Times, serif !important;
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 0;
 }
 
 .login-logo {
-    width: 100px;
+    width: 90px;
     border-radius: 50%;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 .login-card {
-    background: rgba(255, 255, 255, 0.05) !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
-    border-radius: 20px !important;
-    backdrop-filter: blur(20px);
+    background: rgba(39, 10, 22, 0.9) !important;
+    border: 1px solid rgba(212, 175, 55, 0.12) !important;
+    border-radius: 8px !important;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
 }
 
 .login-card .card-body {
-    padding: 3rem !important;
+    padding: 2.5rem !important;
 }
 
 .login-title {
-    font-family: "Playfair Display", "Times New Roman", serif !important;
-    font-size: 2rem !important;
+    font-family: "Times New Roman", Times, serif !important;
+    font-size: 1.8rem !important;
     color: #fff;
-    margin-bottom: 2rem !important;
+    margin-bottom: 1.5rem !important;
+    font-weight: 400;
+    letter-spacing: 0.5px;
 }
 
 .login-card .form-control {
-    background: rgba(255, 255, 255, 0.06) !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
     color: #fff !important;
-    border-radius: 12px !important;
-    padding: 0.9rem 1.2rem !important;
+    border-radius: 4px !important;
+    padding: 0.8rem 1rem !important;
     font-size: 0.95rem !important;
+    font-family: "Times New Roman", Times, serif !important;
     transition: all 0.3s ease;
 }
 
 .login-card .form-control:focus {
-    background: rgba(255, 255, 255, 0.1) !important;
-    border-color: #f0c040 !important;
-    box-shadow: 0 0 0 3px rgba(240, 192, 64, 0.15) !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-color: rgba(212, 175, 55, 0.4) !important;
+    box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.1) !important;
     outline: none;
 }
 
 .login-card .form-control::placeholder {
-    color: rgba(255, 255, 255, 0.35);
+    color: rgba(255, 255, 255, 0.25);
 }
 
 .btn-login {
-    background: linear-gradient(135deg, #f0c040, #e6a800) !important;
-    color: #1a1a2e !important;
+    background: linear-gradient(135deg, #d4af37, #b8941f) !important;
+    color: #1a1a1a !important;
     font-weight: 700 !important;
-    font-size: 1rem !important;
-    padding: 0.8rem !important;
-    border-radius: 12px !important;
+    font-size: 0.95rem !important;
+    padding: 0.75rem !important;
+    border-radius: 4px !important;
     border: none !important;
     width: 100%;
     transition: all 0.3s ease !important;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    font-family: "Times New Roman", Times, serif !important;
+    letter-spacing: 0.5px;
 }
 
 .btn-login:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(240, 192, 64, 0.3);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
 }

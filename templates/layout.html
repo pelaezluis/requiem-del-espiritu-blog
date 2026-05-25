@@ -19,7 +19,10 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container">
-                <a class="navbar-brand" href="/">Requiem del espíritu</a>
+                <a class="navbar-brand" href="/">
+                    <img src="{{ url_for('static', filename='img/logo_2.png') }}" alt="Requiem del espíritu" class="navbar-logo">
+                    <span class="navbar-title">Requiem del espíritu</span>
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarNav" aria-controls="navbarNav"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -50,8 +53,9 @@
 
     {% if 'username' in session %}
         <div class="user-greeting">
-            <div class="container">
-                Hola <strong>{{ session['username'] }}</strong>
+            <div class="container d-flex align-items-center justify-content-between">
+                <span><strong>{{ session['username'] }}</strong>, has iniciado sesión</span>
+                <a href="/blog/nuevo-blog" class="greeting-btn">+ Nueva entrada</a>
             </div>
         </div>
     {% endif %}
