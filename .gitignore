@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+static/songs/*
+!static/songs/.gitkeep
+*.rar
+*.zip
+.DS_Store

@@ -1,121 +1,152 @@
-from flask import Flask, flash, render_template, redirect, session, request, url_for
-from db import DB
 import os
+from flask import Flask, flash, render_template, redirect, session, request, url_for
 from werkzeug.utils import secure_filename
+from db import DB
 
 app = Flask(__name__)
-app.secret_key = "qwerty"
+app.secret_key = os.environ.get("SECRET_KEY", "qwerty")
 
-#path = "/home/requiemdelespiritu/mysite/static/songs"
 path = "static/songs"
-app.config['songs'] = path
+os.makedirs(path, exist_ok=True)
+app.config["songs"] = path
 
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route("/login", methods=["GET", "POST"])
 def login():
     session.clear()
-    if request.method == 'GET':
-        return render_template('auth/Login.html')
+    if request.method == "GET":
+        return render_template("auth/Login.html")
 
-    elif request.method == 'POST':
+    username = request.form["username"]
+    password = request.form["password"]
+    try:
         db = DB()
-        username = request.form['username']
-        password = request.form['password'] 
         data = db.validate_login(username, password)
-        # print(data)
-        if data != None:
-            print('Iniciando sesión')
-            session['user_id'] = data[0]
-            session['username'] = data[2]
-            return redirect('/')
+        db.close()
+        if data is not None:
+            session["user_id"] = data[0]
+            session["username"] = data[2]
+            return redirect("/")
         else:
-            flash('Usuario y/o contraseña erronea')
-            return redirect('/login')
+            flash("Usuario y/o contraseña erronea")
+            return redirect("/login")
+    except Exception as e:
+        print(e)
+        flash("Error de conexión con la base de datos")
+        return redirect("/login")
 
 
-@app.route('/', methods=['GET'])
+@app.route("/", methods=["GET"])
 def home():
-    """
-        Obtener todos los blogs
-    """
-    db = DB()
-    blogs = db.get_blogs()
-    # print(blogs)
-    return render_template('Home.html', title="Requiem del espíritu | Inicio", blogs=blogs)
+    try:
+        db = DB()
+        blogs = db.get_blogs()
+        db.close()
+        return render_template(
+            "Home.html", title="Requiem del espíritu | Inicio", blogs=blogs
+        )
+    except Exception as e:
+        print(e)
+        flash("Error al cargar los blogs")
+        return redirect("/login")
 
 
-@app.route('/blog/<string:ruta>')
+@app.route("/blog/<string:ruta>")
 def blog(ruta):
-    db = DB()
-    blog = db.find_blog(ruta)
-    return render_template("Blog.html", blog=blog, title=blog[0])
+    try:
+        db = DB()
+        blog_data = db.find_blog(ruta)
+        db.close()
+        if blog_data is None:
+            flash("Blog no encontrado")
+            return redirect("/")
+        return render_template(
+            "Blog.html", blog=blog_data, title=blog_data[0]
+        )
+    except Exception as e:
+        print(e)
+        flash("Error al cargar el blog")
+        return redirect("/")
 
 
-@app.route('/blog/nuevo-blog', methods=['GET', 'POST'])
+@app.route("/blog/nuevo-blog", methods=["GET", "POST"])
 def new_blog():
-    """
-        Se crea una nueva entrada
-    """
-    if 'username' not in session:
-        return redirect('/')
+    if "username" not in session:
+        return redirect("/")
 
-    if request.method == 'POST':
+    if request.method == "POST":
         try:
             db = DB()
-            title = request.form['title']
-            print(title)
-            autor = session['user_id']
-            description = request.form['description']
-            img = request.form['img']
-            url = request.form['url']
-            blog = request.form['blog']
-            song = request.files['song']
+            title = request.form["title"]
+            autor = session["user_id"]
+            description = request.form["description"]
+            img = request.form["img"]
+            url = request.form["url"]
+            blog_content = request.form["blog"]
+            song = request.files["song"]
             song_name = secure_filename(song.filename)
             song.save(os.path.join(path, song_name))
-            data = (title, autor, description, img, url, blog, song_name)
+            data = (title, autor, description, img, url, blog_content, song_name)
             db.add_new_blog(data)
-            return redirect('/')
+            db.close()
+            return redirect("/")
         except Exception as e:
             print(e)
-        
-    elif request.method == 'GET':
-        return render_template('NewBlog.html')
+            flash("Error al crear el blog")
+
+    return render_template("NewBlog.html")
 
 
-@app.route('/blog/<string:ruta>/editar/<id>', methods=['GET', 'POST'])
+@app.route("/blog/<string:ruta>/editar/<id>", methods=["GET", "POST"])
 def edit_blog(ruta, id):
-    db = DB()
-    if request.method == 'GET':
-        blog = db.get_blog(id)
-        return render_template('EditBlog.html', blog=blog)
-        
-    elif request.method == 'POST':
-        try:
-            title = request.form['title']
-            description = request.form['description']
-            img = request.form['img']
-            url = request.form['url']
-            blog = request.form['blog']
-            song = request.files['song']
+    try:
+        db = DB()
+        if request.method == "GET":
+            blog_data = db.get_blog(id)
+            db.close()
+            if blog_data is None:
+                flash("Blog no encontrado")
+                return redirect("/")
+            return render_template("EditBlog.html", blog=blog_data)
+
+        title = request.form["title"]
+        description = request.form["description"]
+        img = request.form["img"]
+        url = request.form["url"]
+        blog_content = request.form["blog"]
+        song = request.files["song"]
+        if song and song.filename:
             song_name = secure_filename(song.filename)
             song.save(os.path.join(path, song_name))
-            data = (title, description, img, url, blog, song_name, id)
-            db.edit_blog(data)
-            return redirect('/')
-        except Exception as e:
-            print(e)
-    
+        else:
+            song_name = request.form.get("current_song", "")
+        data = (title, description, img, url, blog_content, song_name, id)
+        db.edit_blog(data)
+        db.close()
+        return redirect("/")
+    except Exception as e:
+        print(e)
+        flash("Error al editar el blog")
+        return redirect("/")
 
 
-@app.route('/blog/<string:ruta>/eliminar/<id>', methods=['GET', 'POST'])
+@app.route("/blog/<string:ruta>/eliminar/<id>", methods=["POST"])
 def delete_blog(ruta, id):
-    if 'username' in session:
+    if "username" not in session:
+        return redirect("/")
+    try:
         db = DB()
         db.delete_blog(id)
-        return redirect('/')
+        db.close()
+    except Exception as e:
+        print(e)
+        flash("Error al eliminar el blog")
+    return redirect("/")
+
 
 if __name__ == "__main__":
     app.run(
-        port=3000,
-        debug=True
+        host="0.0.0.0",
+        port=int(os.environ.get("PORT", 3000)),
+        debug=True,
     )

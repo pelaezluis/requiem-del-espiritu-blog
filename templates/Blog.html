@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="blog" onload="escribirBlog()">
-    
+
     <audio src="{{ url_for('static', filename="songs/"+blog[7]) }}" autoplay></audio>
 
     <h1><em><strong style="color: white">Requiem del espíritu</strong></em></h1>
@@ -13,7 +13,7 @@
         <div id="blog-autor">
             <h6><em>Por <strong>{{blog[1].capitalize() }}</strong></em> </h6>
             <hr>
-            <h6><em>Creado el {{blog[2]}}</em></h6>
+            <!--<h6><em>Creado el {{blog[2]}}</em></h6>-->
             <hr>
         </div>
     </div>
@@ -22,5 +22,6 @@
     <div id="entrada" style="text-align: left">
 
     </div>
+
 </div>
 {% endblock %}
