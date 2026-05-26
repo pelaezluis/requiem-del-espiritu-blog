@@ -1,5 +1,5 @@
 import os
-from mysql import connector
+import pymysql
 
 
 class Connection:
@@ -15,14 +15,11 @@ class Connection:
         print(f"[DB CONFIG] host={host} user={user} db={database} port={port}")
         print(f"[DB CONFIG] password_len={len(password)}")
 
-        return connector.connect(
+        return pymysql.connect(
             host=host,
             user=user,
             password=password,
             database=database,
             port=port,
             charset="utf8mb4",
-            use_unicode=True,
-            use_pure=True,
-            auth_plugin="mysql_native_password",
         )

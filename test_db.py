@@ -1,6 +1,5 @@
 import os
 import sys
-from mysql import connector
 
 HOST = os.environ.get("DB_HOST", "localhost")
 USER = os.environ.get("DB_USER", "root")
@@ -15,42 +14,13 @@ print(f"[TEST] port={PORT}")
 print(f"[TEST] password_len={len(PASS)}")
 print()
 
-# Test 1: with auth_plugin + use_pure
-print("--- Test 1: use_pure=True, auth_plugin=mysql_native_password ---")
+# Test pymysql
+print("--- Test: pymysql ---")
 try:
-    c = connector.connect(
+    import pymysql
+    c = pymysql.connect(
         host=HOST, user=USER, password=PASS, database=DB, port=PORT,
-        charset="utf8mb4", use_unicode=True,
-        use_pure=True, auth_plugin="mysql_native_password",
-    )
-    print("OK")
-    c.close()
-except Exception as e:
-    print(f"FAIL: {e}")
-
-print()
-
-# Test 2: default settings
-print("--- Test 2: default settings ---")
-try:
-    c = connector.connect(
-        host=HOST, user=USER, password=PASS, database=DB, port=PORT,
-        charset="utf8mb4", use_unicode=True,
-    )
-    print("OK")
-    c.close()
-except Exception as e:
-    print(f"FAIL: {e}")
-
-print()
-
-# Test 3: with use_pure only
-print("--- Test 3: use_pure=True only ---")
-try:
-    c = connector.connect(
-        host=HOST, user=USER, password=PASS, database=DB, port=PORT,
-        charset="utf8mb4", use_unicode=True,
-        use_pure=True,
+        charset="utf8mb4",
     )
     print("OK")
     c.close()
