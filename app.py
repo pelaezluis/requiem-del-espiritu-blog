@@ -107,6 +107,8 @@ def new_blog():
 
 @app.route("/blog/<string:ruta>/editar/<id>", methods=["GET", "POST"])
 def edit_blog(ruta, id):
+    if "username" not in session:
+        return redirect("/")
     try:
         db = DB()
         if request.method == "GET":

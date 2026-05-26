@@ -1,4 +1,3 @@
-from flask import session
 from config import Connection
 
 
@@ -30,18 +29,10 @@ class DB:
 
     def get_blogs(self):
         cur = self.db.cursor()
-        if "username" in session:
-            cur.execute(
-                "select e.id, e.title, u.username, e.description, e.img, e.created_at, e.url "
-                "from entrada e left join user u on u.id = e.user_id "
-                "where u.username = %s",
-                (session["username"],),
-            )
-        else:
-            cur.execute(
-                "select e.id, e.title, u.username, e.description, e.img, e.created_at, e.url "
-                "from entrada e left join user u on u.id = e.user_id"
-            )
+        cur.execute(
+            "select e.id, e.title, u.username, e.description, e.img, e.created_at, e.url "
+            "from entrada e left join user u on u.id = e.user_id"
+        )
         rows = cur.fetchall()
         cur.close()
         return rows

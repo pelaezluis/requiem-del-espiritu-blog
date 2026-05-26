@@ -12,9 +12,6 @@ class Connection:
         database = os.environ.get("DB_NAME", "blog")
         port = int(os.environ.get("DB_PORT", 3306))
 
-        print(f"[DB CONFIG] host={host} user={user} db={database} port={port}")
-        print(f"[DB CONFIG] password_len={len(password)}")
-
         return MySQLdb.connect(
             host=host,
             user=user,
