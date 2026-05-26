@@ -8,7 +8,7 @@ class DB:
         self.db = Connection.get_connection()
 
     def close(self):
-        if self.db and self.db.is_connected():
+        if self.db and self.db.open:
             self.db.close()
 
     def __enter__(self):
