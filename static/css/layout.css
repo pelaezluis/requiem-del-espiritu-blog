@@ -1,6 +1,4 @@
-html {
-    height: 100%;
-}
+html { height: 100%; }
 
 body {
     background: #452635;
@@ -8,32 +6,42 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    color: #e0e0e0;
+    margin: 0;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(ellipse at 20% 50%, rgba(212, 175, 55, 0.02) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 50%, rgba(212, 175, 55, 0.015) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
 }
 
 .main-content {
     flex: 1;
+    animation: fadeUp 0.4s ease;
 }
 
-footer {
-    text-align: center;
-    background: #51111f;
-    height: 160px;
-    width: 100%;
-    font-family: 'Times New Roman', Times, serif;
-    margin-top: 2em;
-    flex-shrink: 0;
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
-.instagram {
-    padding: 1em;
-    width: 4em;
+/* Nav overlay for mobile */
+.nav-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 40;
 }
 
-.instagram:hover {
-    width: 5em;
-}
+.nav-overlay.open { display: block; }
 
-.copyright {
-    padding: 2em;
-    color: whitesmoke;
+@media (min-width: 992px) {
+    .nav-overlay { display: none !important; }
 }

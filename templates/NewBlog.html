@@ -1,44 +1,50 @@
 {% extends "layout.html" %}
 
 {% block content %}
-    <div>
-        <div class="blog">
-            <h1 style="color: whitesmoke">Nueva entrada</h1>
-        </div>
-        
-        <form action="/blog/nuevo-blog" method="post" enctype="multipart/form-data">
-            <div class="mb-3" style="color: whitesmoke">
-                <label for="exampleInputEmail1" class="form-label">Título</label>
-                <input type="text" class="form-control" name="title" placeholder="Escribe el título de la entrada" required>
-            </div>
-            <div class="mb-3" style="color: whitesmoke">
-                <label for="exampleInputEmail1" class="form-label">Descripción</label>
-                <input type="text" class="form-control" name="description" placeholder="Describe brevemente el contenido" required>
-            </div>
-            <div class="mb-3" style="color: whitesmoke">
-                <label for="exampleInputEmail1" class="form-label">Imagen</label>
-                <input type="text" class="form-control" name="img" placeholder="Pega la ruta de la imagen" >
-            </div>
-            <div class="mb-3" style="color: whitesmoke">
-                <label for="exampleInputEmail1" class="form-label">Enlace youtube</label>
-                <input type="text" class="form-control" name="url_youtube" placeholder="Pega la url de youtube">
-            </div>
-            <div class="mb-3" style="color: whitesmoke">
-                <label for="exampleInputEmail1" class="form-label">Ruta (URL)</label>
-                <input type="text" class="form-control" name="url" placeholder="escribe-el-titulo-separado-por-guiones (Sin signos ni tildes)" required>
-            </div>
-            <div class="mb-3" style="color: whitesmoke">
-                <label for="exampleInputAudio" class="form-label">Audio</label>
-                <input type="file" accept="audio/*" name="song" required>
-            </div>
-            <textarea name="blog"></textarea>
-            <br>
-            <button type="submit" class="btn" style="background: #6E6702 !important; color: whitesmoke">Guardar</button>
-            <a class="btn" href="/" style="background: #6E6702 !important; color: whitesmoke">Volver</a>
-        </form>
+<div class="max-w-3xl mx-auto">
+    <h2 class="text-3xl text-white font-serif mb-6 font-normal">Nueva entrada</h2>
 
-        <script>
-            CKEDITOR.replace('blog');
-        </script>
-    </div>
+    <form action="/blog/nuevo-blog" method="post" enctype="multipart/form-data">
+        <div class="mb-4">
+            <label class="block text-white/70 text-sm font-serif mb-1.5">Título</label>
+            <input type="text" name="title" required
+                   class="w-full bg-white/[0.05] border border-white/10 text-white rounded px-4 py-2.5 font-serif text-sm transition focus:bg-white/10 focus:border-gold/40 focus:ring-2 focus:ring-gold/10 outline-none"
+                   placeholder="Título de la entrada">
+        </div>
+        <div class="mb-4">
+            <label class="block text-white/70 text-sm font-serif mb-1.5">Descripción</label>
+            <input type="text" name="description" required
+                   class="w-full bg-white/[0.05] border border-white/10 text-white rounded px-4 py-2.5 font-serif text-sm transition focus:bg-white/10 focus:border-gold/40 focus:ring-2 focus:ring-gold/10 outline-none"
+                   placeholder="Breve descripción">
+        </div>
+        <div class="mb-4">
+            <label class="block text-white/70 text-sm font-serif mb-1.5">Imagen</label>
+            <input type="text" name="img"
+                   class="w-full bg-white/[0.05] border border-white/10 text-white rounded px-4 py-2.5 font-serif text-sm transition focus:bg-white/10 focus:border-gold/40 focus:ring-2 focus:ring-gold/10 outline-none"
+                   placeholder="URL de la imagen">
+        </div>
+        <div class="mb-4">
+            <label class="block text-white/70 text-sm font-serif mb-1.5">Ruta (URL)</label>
+            <input type="text" name="url" required
+                   class="w-full bg-white/[0.05] border border-white/10 text-white rounded px-4 py-2.5 font-serif text-sm transition focus:bg-white/10 focus:border-gold/40 focus:ring-2 focus:ring-gold/10 outline-none"
+                   placeholder="titulo-separado-por-guiones">
+        </div>
+        <div class="mb-4">
+            <label class="block text-white/70 text-sm font-serif mb-1.5">Audio</label>
+            <input type="file" accept="audio/*" name="song" required
+                   class="w-full text-white/60 text-sm font-serif file:bg-gold/10 file:border file:border-gold/20 file:text-gold file:px-4 file:py-1.5 file:rounded file:cursor-pointer file:font-serif file:text-sm file:mr-3 file:transition hover:file:bg-gold/20">
+        </div>
+        <div class="mb-4">
+            <label class="block text-white/70 text-sm font-serif mb-1.5">Contenido</label>
+            <textarea name="blog"></textarea>
+        </div>
+        <div class="flex gap-3">
+            <button type="submit" class="bg-gradient-to-br from-gold to-gold-dark text-[#1a1a1a] font-bold px-8 py-2.5 rounded text-sm font-serif transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:from-gold-light hover:to-gold border-0 cursor-pointer">Guardar</button>
+            <a href="/" class="inline-block text-white/60 border border-white/20 rounded px-8 py-2.5 text-sm font-serif no-underline transition hover:text-white hover:border-white/30">Volver</a>
+        </div>
+    </form>
+</div>
+
+<script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+<script>CKEDITOR.replace('blog');</script>
 {% endblock %}

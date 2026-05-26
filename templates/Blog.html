@@ -1,27 +1,26 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<div class="blog" onload="escribirBlog()">
+<article class="max-w-3xl mx-auto py-6 text-white/90">
+    {% if blog[7] %}
+    <audio src="{{ url_for('static', filename='songs/' + blog[7]) }}" autoplay hidden></audio>
+    {% endif %}
 
-    <audio src="{{ url_for('static', filename="songs/"+blog[7]) }}" autoplay></audio>
-
-    <h1><em><strong style="color: white">Requiem del espíritu</strong></em></h1>
-    <br><br>
-    <hr>
-    <div class="container">
-        <h1 class="blog-title"><em>{{blog[0]}}</em></h1>
-        <div id="blog-autor">
-            <h6><em>Por <strong>{{blog[1].capitalize() }}</strong></em> </h6>
-            <hr>
-            <!--<h6><em>Creado el {{blog[2]}}</em></h6>-->
-            <hr>
+    <div class="text-center mb-8">
+        <h1 class="text-3xl sm:text-4xl text-white font-serif font-normal leading-tight mb-3">{{ blog[0] }}</h1>
+        <div class="flex items-center justify-center gap-3 flex-wrap text-sm text-white/40 font-serif">
+            <span class="text-gold">Por <strong>{{ blog[1] }}</strong></span>
+            <span class="w-1 h-1 rounded-full bg-white/30"></span>
+            <span>{{ blog[2] }}</span>
         </div>
     </div>
-    <img style="width: 50%; ; padding-top: 2em; padding-bottom: 3em" src="{{blog[5]}}" alt="">
-    <p hidden id="blog_p">{{blog[3]}}</p>
-    <div id="entrada" style="text-align: left">
 
-    </div>
+    <hr class="border-0 h-px max-w-[250px] mx-auto mb-6" style="background: linear-gradient(90deg, transparent, rgba(212,175,55,0.12), transparent);">
 
-</div>
+    {% if blog[5] %}
+    <img src="{{ blog[5] }}" alt="" class="w-full max-h-[420px] object-cover rounded mb-6 shadow-2xl">
+    {% endif %}
+
+    <div id="entrada" class="text-base leading-relaxed font-serif">{{ blog[3] | safe }}</div>
+</article>
 {% endblock %}

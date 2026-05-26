@@ -1,19 +1,11 @@
-.blog {
-    margin: 2em;
-    text-align: center;
-    color: whitesmoke
+#entrada p { margin-bottom: 1.25rem; }
+#entrada img { max-width: 100%; height: auto; margin: 1.5rem 0; }
+#entrada blockquote {
+    border-left: 3px solid #d4af37;
+    padding: 0.5rem 1.5rem;
+    margin: 1.5rem 0;
+    color: rgba(255, 255, 255, 0.65);
+    font-style: italic;
+    background: rgba(212, 175, 55, 0.04);
 }
-
-.blog-title {
-    font-size: 50px;
-}
-
-#blog-autor {
-    text-align: right;
-    color: #958c04;
-}
-
-#entrada {
-    width: 100%;
-    word-wrap: break-word;
-}
+#entrada h2, #entrada h3 { color: #fff; font-weight: 400; margin-top: 2rem; margin-bottom: 1rem; }

@@ -1,58 +1,37 @@
-.home {
-    margin: 2em;
-    text-align: center;
+.new-badge {
+    animation: pulse-badge 2.5s infinite;
+    pointer-events: none;
 }
 
-.blogs {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+@keyframes pulse-badge {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.85; }
 }
 
-.img-blog {
-    width: 100%;
+.card-overlay {
+    transition: all 0.35s ease;
+    background: rgba(0, 0, 0, 0.15);
 }
 
-.encabezado {
-    color: whitesmoke
+.card-info {
+    transform: translateY(15px);
+    transition: transform 0.35s ease;
 }
 
-#titulo-holoceno {
-    margin: 1em;
+.blog-card:hover .card-info {
+    transform: translateY(0);
 }
 
-#img-holoceno {
-    border-radius: 20px;
+@keyframes shimmer {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
 }
 
-.btn-read {
-    background: #51111F !important;
+.card-image {
+    transition: all 0.5s ease;
 }
 
-.card-box {
-    box-shadow: 3px 3px 20px 7px rgba(170, 130, 100, 0.3);
-    border-radius: 0px 0 30px 30px;
-    background: #270A16 !important;
-}
-
-.no-disponibles {
-    color: whitesmoke;
-    font-family: 'Grenze Gotisch', cursive;
-    font-size: 60px
-}
-
-.nuevo {
-    display: flex;
-    justify-content: center;
-    color: whitesmoke;
-}
-
-.nuevo h3 {
-    width: 50%;
-    /*background: #EA5113;*/
-    background: #DB81FF;
-    margin: 0.5em;
-    border-radius: 10px;
-    font-family: 'Grenze Gotisch', cursive;
-    text-decoration: underline;
+.blog-card:hover .card-image {
+    filter: blur(5px);
+    transform: scale(1.04);
 }
