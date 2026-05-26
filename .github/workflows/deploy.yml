@@ -1,0 +1,16 @@
+name: Deploy to PythonAnywhere
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger deploy webhook
+        run: |
+          curl -s -X POST "${{ secrets.DEPLOY_URL }}" \
+            -H "X-Deploy-Token: ${{ secrets.DEPLOY_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            -d '{"ref": "${{ github.ref }}", "commit": "${{ github.sha }}"}'

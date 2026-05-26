@@ -152,6 +152,28 @@ def delete_blog(ruta, id):
     return redirect("/poemas")
 
 
+@app.route("/deploy", methods=["POST"])
+def deploy():
+    token = request.headers.get("X-Deploy-Token")
+    if token != os.environ.get("DEPLOY_SECRET"):
+        return "Unauthorized", 401
+
+    import subprocess
+
+    repo_path = os.environ.get("REPO_PATH", os.getcwd())
+    wsgi_path = os.environ.get("WSGI_PATH")
+
+    if not wsgi_path:
+        return "WSGI_PATH not configured", 500
+
+    try:
+        subprocess.run(["git", "pull"], cwd=repo_path, capture_output=True, text=True, check=True)
+        subprocess.run(["touch", wsgi_path], capture_output=True, check=True)
+        return "Deployed", 200
+    except subprocess.CalledProcessError as e:
+        return f"Deploy failed: {e.stderr}", 500
+
+
 if __name__ == "__main__":
     app.run(
         host="0.0.0.0",
