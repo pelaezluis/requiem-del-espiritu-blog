@@ -1,5 +1,4 @@
 import os
-import sys
 
 HOST = os.environ.get("DB_HOST", "localhost")
 USER = os.environ.get("DB_USER", "root")
@@ -12,14 +11,15 @@ print(f"[TEST] user={USER}")
 print(f"[TEST] db={DB}")
 print(f"[TEST] port={PORT}")
 print(f"[TEST] password_len={len(PASS)}")
+print(f"[TEST] password_chars={[ord(c) for c in PASS]}")
 print()
 
-# Test pymysql
-print("--- Test: pymysql ---")
+# Test mysqlclient
+print("--- Test: mysqlclient (MySQLdb) ---")
 try:
-    import pymysql
-    c = pymysql.connect(
-        host=HOST, user=USER, password=PASS, database=DB, port=PORT,
+    import MySQLdb
+    c = MySQLdb.connect(
+        host=HOST, user=USER, passwd=PASS, db=DB, port=PORT,
         charset="utf8mb4",
     )
     print("OK")
