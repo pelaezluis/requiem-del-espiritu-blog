@@ -23,4 +23,6 @@ class Connection:
             port=port,
             charset="utf8mb4",
             use_unicode=True,
+            use_pure=True,
+            auth_plugin="mysql_native_password",
         )
