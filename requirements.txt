@@ -1,5 +1,4 @@
 flask
-pymysql
+mysqlclient
 python-dotenv
 werkzeug
-cryptography

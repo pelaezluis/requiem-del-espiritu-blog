@@ -1,5 +1,5 @@
 import os
-import pymysql
+import MySQLdb
 
 
 class Connection:
@@ -15,11 +15,11 @@ class Connection:
         print(f"[DB CONFIG] host={host} user={user} db={database} port={port}")
         print(f"[DB CONFIG] password_len={len(password)}")
 
-        return pymysql.connect(
+        return MySQLdb.connect(
             host=host,
             user=user,
-            password=password,
-            database=database,
+            passwd=password,
+            db=database,
             port=port,
             charset="utf8mb4",
         )
