@@ -1,11 +1,23 @@
-#entrada p { margin-bottom: 1.25rem; }
-#entrada img { max-width: 100%; height: auto; margin: 1.5rem 0; }
+#entrada { max-width: 700px; margin: 0 auto; }
+#entrada p { margin-bottom: 1.5rem; }
+#entrada img { max-width: 100%; height: auto; margin: 2rem auto; display: block; border-radius: 6px; }
 #entrada blockquote {
     border-left: 3px solid #d4af37;
-    padding: 0.5rem 1.5rem;
-    margin: 1.5rem 0;
-    color: rgba(255, 255, 255, 0.65);
+    padding: 0.75rem 1.5rem;
+    margin: 2rem 0;
+    color: rgba(255, 255, 255, 0.7);
     font-style: italic;
     background: rgba(212, 175, 55, 0.04);
 }
-#entrada h2, #entrada h3 { color: #fff; font-weight: 400; margin-top: 2rem; margin-bottom: 1rem; }
+#entrada h2, #entrada h3 { color: #fff; font-weight: 400; margin-top: 2.5rem; margin-bottom: 1rem; letter-spacing: 0.01em; }
+#entrada ul, #entrada ol { margin: 1.25rem 0; padding-left: 1.5rem; }
+#entrada li { margin-bottom: 0.5rem; }
+#entrada a { color: #d4af37; text-decoration: none; border-bottom: 1px solid rgba(212,175,55,0.3); transition: border-color 0.2s; }
+#entrada a:hover { border-color: #d4af37; }
+#entrada pre, #entrada code { font-size: 0.9em; background: rgba(255,255,255,0.05); border-radius: 4px; padding: 0.2em 0.4em; }
+#entrada pre { padding: 1rem; overflow-x: auto; }
+
+@media (max-width: 640px) {
+    #entrada { padding: 0 0.75rem; }
+    #entrada blockquote { padding: 0.5rem 1rem; }
+}

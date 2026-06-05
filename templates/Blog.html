@@ -10,8 +10,6 @@
         <h1 class="text-3xl sm:text-4xl text-white font-serif font-normal leading-tight mb-3">{{ blog[0] }}</h1>
         <div class="flex items-center justify-center gap-3 flex-wrap text-sm text-white/40 font-serif">
             <span class="text-gold">Por <strong>{{ blog[1] }}</strong></span>
-            <span class="w-1 h-1 rounded-full bg-white/30"></span>
-            <span>{{ blog[2] }}</span>
         </div>
     </div>
 
@@ -21,6 +19,6 @@
     <img src="{{ blog[5] }}" alt="" class="w-full max-h-[420px] object-cover rounded mb-6 shadow-2xl">
     {% endif %}
 
-    <div id="entrada" class="text-base leading-relaxed font-serif">{{ blog[3] | safe }}</div>
+    <div id="entrada" class="text-[17px] sm:text-[19px] leading-[1.85] sm:leading-[1.9] font-serif px-1 sm:px-0">{{ blog[3] | safe }}</div>
 </article>
 {% endblock %}
