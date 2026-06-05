@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<article class="max-w-3xl mx-auto py-6 text-white/90">
+<article class="max-w-3xl w-full mx-auto py-6 px-0 sm:px-4 text-white/90 overflow-hidden">
     {% if blog[7] %}
     <audio src="{{ url_for('static', filename='songs/' + blog[7]) }}" autoplay hidden></audio>
     {% endif %}
@@ -19,6 +19,6 @@
     <img src="{{ blog[5] }}" alt="" class="w-full max-h-[420px] object-cover rounded mb-6 shadow-2xl">
     {% endif %}
 
-    <div id="entrada" class="text-[17px] sm:text-[19px] leading-[1.85] sm:leading-[1.9] font-serif px-1 sm:px-0">{{ blog[3] | safe }}</div>
+    <div id="entrada" class="text-[16px] sm:text-[19px] leading-[1.8] sm:leading-[1.9] font-serif">{{ blog[3] | safe }}</div>
 </article>
 {% endblock %}

@@ -1,4 +1,4 @@
-#entrada { max-width: 700px; margin: 0 auto; }
+#entrada { max-width: 700px; width: 100%; margin: 0 auto; box-sizing: border-box; }
 #entrada p { margin-bottom: 1.5rem; }
 #entrada img { max-width: 100%; height: auto; margin: 2rem auto; display: block; border-radius: 6px; }
 #entrada blockquote {
